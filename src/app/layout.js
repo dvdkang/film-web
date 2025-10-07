@@ -1,9 +1,31 @@
 // import { Fredoka_One, Baloo_2, Poppins, Quicksand } from "next/font/google";
 "use client";
+import { Bebas_Neue, Jost, Lobster_Two } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
 import { useState } from "react";
 import Confetti from "react-confetti";
+import { ContentProvider } from "../context/ContentContext";
+import { usePathname } from "next/navigation";
+
+const bebasNeue = Bebas_Neue({
+  variable: "--font-bebas",
+  weight: "400",
+  subsets: ["latin"],
+});
+
+const jost = Jost({
+  variable: "--font-jost",
+  weight: ["400", "500", "700"],
+  subsets: ["latin"],
+});
+
+const lobsterFont = Lobster_Two({
+  variable: "--font-lobster",
+  weight: "700",
+  subsets: ["latin"],
+});
 
 // const fredokaOne = Fredoka_One({
 //   variable: "--font-fredoka",
@@ -38,13 +60,34 @@ export default function RootLayout({ children }) {
     setTimeout(() => setConfettiActive(false), 3000); // 3-second burst
   };
 
+  const pathname = usePathname();
+
+  // choose background based on route
+  const backgroundImage =
+    pathname === "/synopsis"
+      ? "url('https://eoihqopusjdnmgmfgyrr.supabase.co/storage/v1/object/public/assets/Scene%20Background/bg-scene1.png')"
+      : pathname === "/"
+      ? "url('https://eoihqopusjdnmgmfgyrr.supabase.co/storage/v1/object/public/assets/home-bg.png')"
+      : "none";
+
   return (
     <html lang="en">
       <body
-      // className={`${fredokaOne.variable} ${baloo2.variable} ${poppins.variable} ${quicksand.variable} antialiased`}
+        className={`antialiased ${bebasNeue.className} ${jost.variable} ${lobsterFont.variable}`}
+        // className={`${fredokaOne.variable} ${baloo2.variable} ${poppins.variable} ${quicksand.variable} antialiased`}
       >
+        <div
+          className="absolute inset-0 w-full h-screen object-cover -z-10"
+          style={{
+            backgroundImage,
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+          }}
+        />
         <Navbar triggerConfetti={triggerConfetti} />
-        {children}
+        <div className="pt-[5rem] md:pt-[6rem]">
+          <ContentProvider>{children}</ContentProvider>
+        </div>
         {confettiActive && (
           <Confetti
             width={window.innerWidth}
@@ -54,6 +97,7 @@ export default function RootLayout({ children }) {
             gravity={0.3}
           />
         )}
+        <Footer />
       </body>
     </html>
   );
