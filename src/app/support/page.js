@@ -13,7 +13,7 @@ export default function Support() {
   const handleNext = () => {
     setTransitionDirection("next");
     setActiveIndex((prevIndex) =>
-      prevIndex === 4 ? prevIndex : prevIndex + 1
+      prevIndex === 2 ? prevIndex : prevIndex + 1
     );
   };
 
@@ -36,7 +36,7 @@ export default function Support() {
         "doloremque aut ratione eos! Laudantium ipsum velit, modi quae repudiandae, in quidem iste cupiditate sequi expedita placeat quam rerum, optio facilis. Officia iure quo illo eligendi. Perspiciatis voluptatibus itaque natus maiores alias vitae, reprehenderit distinctio cupiditate libero fugiat aut architecto ratione?",
     },
     {
-      title: "Tell your friends",
+      title: "Mailing List: Stay updated on project progress & BTS",
       description:
         "Laudantium ipsum velit, modi quae repudiandae, in quidem iste cupiditate sequi expedita placeat quam rerum, optio facilis. Officia iure quo illo eligendi. Perspiciatis voluptatibus itaque natus maiores alias vitae, reprehenderit distinctio cupiditate libero fugiat aut architecto ratione?",
     },
@@ -67,114 +67,129 @@ export default function Support() {
   const team = content.team;
 
   return (
-    <div className={styles.carouselContainer}>
-      <motion.div
-        className={styles.contentContainer}
-        key={activeIndex}
-        variants={textContainerVariants}
-        initial="hidden"
-        animate="visible"
-      >
-        <div className={styles.titleContainer}>
-          <motion.h1 variants={textVariants} className={styles.myh1}>
-            {texts[activeIndex].title}
-          </motion.h1>
-        </div>
-        <div className={styles.descriptionContainer}>
-          <motion.p variants={textVariants} className={styles.myp}>
-            {texts[activeIndex].description}
-          </motion.p>
-        </div>
-        <div className={styles.buttonContainer}>
-          <button className={styles.mybutton}>Learn More</button>
-        </div>
-      </motion.div>
-      <div className={styles.imagesContainer}>
-        <motion.div
-          className={styles.firstContainer}
-          animate={{
-            opacity: activeIndex === 0 ? 1 : activeIndex === 1 ? 0 : 0,
-            x: activeIndex === 0 ? "0px" : activeIndex === 1 ? "96px" : "96px",
-            scale: activeIndex === 0 ? 1 : activeIndex === 1 ? 1.2 : 1.2,
-          }}
-          transition={{ duration: 0.5, delay: 0, ease: easeInOut }}
-        >
-          <img
-            className={styles.first}
-            alt="first image"
-            src="/team/alice.jpg"
-          ></img>
-        </motion.div>
-        <motion.div
-          className={styles.secondContainer}
-          animate={{
-            opacity: activeIndex === 0 ? 0.66 : activeIndex === 1 ? 1 : 0,
-            x: activeIndex === 0 ? "-96px" : activeIndex === 1 ? "0px" : "96px",
-            scale: activeIndex === 0 ? 0.8 : activeIndex === 1 ? 1 : 1.2,
-          }}
-          transition={{ duration: 0.5, delay: 0, ease: easeInOut }}
-        >
-          <img
-            className={styles.second}
-            alt="second image"
-            src="/team/bob.jpg"
-          ></img>
-        </motion.div>
-        <motion.div
-          className={styles.thirdContainer}
-          animate={{
-            opacity: activeIndex === 0 ? 0.33 : activeIndex === 1 ? 0.66 : 1,
-            x:
-              activeIndex === 0
-                ? "-192px"
-                : activeIndex === 1
-                ? "-96px"
-                : "0px",
-            scale: activeIndex === 0 ? 0.6 : activeIndex === 1 ? 0.8 : 1,
-          }}
-          transition={{ duration: 0.5, delay: 0, ease: easeInOut }}
-        >
-          <img
-            className={styles.third}
-            alt="third image"
-            src="/team/charlie.jpg"
-          ></img>
-        </motion.div>
-        <div className={styles.controls}>
-          <button
-            className={
-              activeIndex === 0
-                ? `${styles.disabled}`
-                : `${styles.prevContainer}`
-            }
-            onClick={handlePrev}
+    <div className="carouselWrapper overflow-hidden">
+      <div className="carouselContainer mb-[35rem] md:mb-0">
+        <div className={styles.carouselContainer}>
+          <motion.div
+            className={styles.contentContainer}
+            key={activeIndex}
+            variants={textContainerVariants}
+            initial="hidden"
+            animate="visible"
           >
-            <img
-              alt="previous button"
-              src={
-                activeIndex === 0
-                  ? "Testing/previous-disabled.svg"
-                  : "Testing/previous-enabled.svg"
-              }
-            ></img>
-          </button>
-          <button
-            className={
-              activeIndex === 2
-                ? `${styles.disabled}`
-                : `${styles.nextContainer}`
-            }
-            onClick={handleNext}
-          >
-            <img
-              alt="next button"
-              src={
-                activeIndex === 2
-                  ? "Testing/next-disabled.svg"
-                  : "Testing/next-enabled.svg"
-              }
-            ></img>
-          </button>
+            <div className={styles.titleContainer}>
+              <motion.h1 variants={textVariants} className={styles.myh1}>
+                {texts[activeIndex].title}
+              </motion.h1>
+            </div>
+            <div className={styles.descriptionContainer}>
+              <motion.p variants={textVariants} className={styles.myp}>
+                {texts[activeIndex].description}
+              </motion.p>
+            </div>
+            <div className={styles.buttonContainer}>
+              <button className={styles.mybutton}>Learn More</button>
+            </div>
+          </motion.div>
+          <div className={styles.imagesContainer}>
+            <motion.div
+              className={styles.firstContainer}
+              animate={{
+                opacity: activeIndex === 0 ? 1 : activeIndex === 1 ? 0 : 0,
+                x:
+                  activeIndex === 0
+                    ? "0px"
+                    : activeIndex === 1
+                    ? "96px"
+                    : "96px",
+                scale: activeIndex === 0 ? 1 : activeIndex === 1 ? 1.2 : 1.2,
+              }}
+              transition={{ duration: 0.5, delay: 0, ease: easeInOut }}
+            >
+              <img
+                className={styles.first}
+                alt="first image"
+                src="/team/alice.jpg"
+              ></img>
+            </motion.div>
+            <motion.div
+              className={styles.secondContainer}
+              animate={{
+                opacity: activeIndex === 0 ? 0.66 : activeIndex === 1 ? 1 : 0,
+                x:
+                  activeIndex === 0
+                    ? "-96px"
+                    : activeIndex === 1
+                    ? "0px"
+                    : "96px",
+                scale: activeIndex === 0 ? 0.8 : activeIndex === 1 ? 1 : 1.2,
+              }}
+              transition={{ duration: 0.5, delay: 0, ease: easeInOut }}
+            >
+              <img
+                className={styles.second}
+                alt="second image"
+                src="/team/bob.jpg"
+              ></img>
+            </motion.div>
+            <motion.div
+              className={styles.thirdContainer}
+              animate={{
+                opacity:
+                  activeIndex === 0 ? 0.33 : activeIndex === 1 ? 0.66 : 1,
+                x:
+                  activeIndex === 0
+                    ? "-192px"
+                    : activeIndex === 1
+                    ? "-96px"
+                    : "0px",
+                scale: activeIndex === 0 ? 0.6 : activeIndex === 1 ? 0.8 : 1,
+              }}
+              transition={{ duration: 0.5, delay: 0, ease: easeInOut }}
+            >
+              <img
+                className={styles.third}
+                alt="third image"
+                src="/team/charlie.jpg"
+              ></img>
+            </motion.div>
+            <div className={styles.controls}>
+              <button
+                className={
+                  activeIndex === 0
+                    ? `${styles.disabled}`
+                    : `${styles.prevContainer}`
+                }
+                onClick={handlePrev}
+              >
+                <img
+                  alt="previous button"
+                  src={
+                    activeIndex === 0
+                      ? "Testing/previous-disabled.svg"
+                      : "Testing/previous-enabled.svg"
+                  }
+                ></img>
+              </button>
+              <button
+                className={
+                  activeIndex === 2
+                    ? `${styles.disabled}`
+                    : `${styles.nextContainer}`
+                }
+                onClick={handleNext}
+              >
+                <img
+                  alt="next button"
+                  src={
+                    activeIndex === 2
+                      ? "Testing/next-disabled.svg"
+                      : "Testing/next-enabled.svg"
+                  }
+                ></img>
+              </button>
+            </div>
+          </div>
         </div>
       </div>
     </div>
