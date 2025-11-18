@@ -1,31 +1,52 @@
 "use client";
 
-import { useContext } from "react";
+import { useContext, useState, useEffect } from "react";
 import { ContentContext } from "@/context/ContentContext";
-
-// import Slider from "react-slick";
-// import "slick-carousel/slick/slick.css";
-// import "slick-carousel/slick/slick-theme.css";
 
 export default function TeamRowResponsive() {
   const content = useContext(ContentContext);
+  const [activeCard, setActiveCard] = useState(null);
+
+  const [isMobile, setIsMobile] = useState(false);
+
+  // Determine if we are on mobile
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth < 768); // example breakpoint
+    handleResize(); // initial check
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   if (!content) return;
   const team = content.team;
 
-  const firstRow = team.members.slice(0, 3);
-  const secondRow = team.members.slice(3, 5);
+  const firstRow = team.members.slice(0, 2);
+  const secondRow = team.members.slice(2, 5);
 
-  const renderMemberCard = (member, idx) => (
+  const renderMemberCard = (member) => (
     <div
-      key={idx}
+      key={member.id}
       className="relative w-full max-w-sm aspect-[3/4] group mx-auto"
+      onClick={() => {
+        if (isMobile) {
+          setActiveCard(activeCard === member.id ? null : member.id);
+        }
+      }}
     >
       {/* Colored box slightly shifted top-left */}
       <div
-        className={`absolute top-0 left-0 w-full h-full ${member.color} rounded-lg shadow-lg
+        className={`absolute top-0 left-0 w-full h-full ${
+          member.color
+        } rounded-lg shadow-lg
                     transform -translate-x-2 -translate-y-2
                     group-hover:translate-x-0 group-hover:translate-y-0
-                    transition-transform duration-300`}
+                    transition-transform duration-300 ${
+                      activeCard === member.id
+                        ? "translate-x-0"
+                        : "-translate-x-2"
+                    } ${
+          activeCard === member.id ? "translate-y-0" : "-translate-y-2"
+        }`}
       />
 
       {/* Image fully visible */}
@@ -35,50 +56,48 @@ export default function TeamRowResponsive() {
         className="relative z-10 w-full h-full object-cover rounded-lg shadow-lg"
       />
 
+      {member.emoji && (
+        <span
+          className="absolute -top-4 -right-4 text-6xl z-30"
+          style={{ pointerEvents: "none" }}
+        >
+          {member.emoji}
+        </span>
+      )}
+
       {/* Hover overlay */}
       <div
-        className={`absolute inset-0 ${member.color} bg-opacity-60 opacity-0 group-hover:opacity-100 
-                    flex flex-col items-center justify-start px-12 pt-10 space-y-6 rounded-lg 
-                    transition-opacity z-20`}
+        className={`absolute inset-0 ${
+          member.color
+        } bg-opacity-60 opacity-0 md:group-hover:opacity-100 
+                    flex flex-col items-center justify-start px-12 pt-6 space-y-3 rounded-lg 
+                    transition-opacity z-20 ${
+                      activeCard === member.id ? "opacity-100" : "opacity-0"
+                    }`}
       >
-        <h2 className="text-4xl font-bold text-white">{member.name}</h2>
-        <h3 className="text-2xl text-white italic">{member.role}</h3>
-        <p className="text-xl text-white">{member.description}</p>
+        <h2 className="text-2xl md:text-4xl font-bold text-white">
+          {member.name}
+        </h2>
+        <h3 className="text-lg md:text-xl text-white italic">{member.role}</h3>
+        <div className="w-24 h-[1px] bg-white/70 my-0.25 md:my-1"></div>
+        <p className="text-[0.95rem] md:text-md text-white font-serif">
+          {member.description}
+        </p>
       </div>
     </div>
   );
-  //   const settings = {
-  //     infinite: true,
-  //     slidesToShow: 2,
-  //     slidesToScroll: 2,
-  //     arrows: true,
-  //     dots: false,
-  //     autoplay: false,
-  //     adaptiveHeight: true,
-  //     responsive: [
-  //       {
-  //         breakpoint: 768,
-  //         settings: {
-  //           slidesToShow: 1,
-  //           slidesToScroll: 1,
-  //         },
-  //       },
-  //     ],
-  //   };
 
   return (
     <div className="min-h-screen bg-brand-beige py-16 px-4">
-      <h1 className="text-4xl md:text-5xl font-bold text-center text-brand-darkred mb-12">
+      <h1 className="text-4xl text-white md:text-5xl font-bold text-center text-brand-darkred mb-12">
         {team.title}
       </h1>
       <div className="max-w-10xl mx-auto space-y-8">
-        {/* First row: 3 cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {firstRow.map(renderMemberCard)}
         </div>
 
-        {/* Second row: 2 cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {secondRow.map(renderMemberCard)}
         </div>
       </div>
