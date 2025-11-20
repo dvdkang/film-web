@@ -1,11 +1,10 @@
 "use client";
 // import { useState } from "react";
-import { useContext, useState, useEffect, useRef } from "react";
+import { useContext, useState, useEffect, useRef, useMemo } from "react";
 import { ContentContext } from "@/context/ContentContext";
-import Image from "next/image";
 import "./style.css";
 
-export default function reference() {
+export default function Reference() {
   const content = useContext(ContentContext);
   const [rotation, setRotation] = useState(0);
   const [expandedIndex, setExpandedIndex] = useState(null);
@@ -13,12 +12,16 @@ export default function reference() {
   const [isHovered, setIsHovered] = useState(false);
   const videoRefs = useRef([]);
 
-  if (!content) return;
-  const refer = content.reference.refer;
-
-  const total = refer.length;
-  const angle = 360 / total;
-  const radius = 500;
+  const { refer, total, angle, radius } = useMemo(() => {
+    if (!content) {
+      return { refer: [], total: 0, angle: 0, radius: 0 };
+    }
+    const refer = content.reference.refer;
+    const total = refer.length;
+    const angle = 360 / total;
+    const radius = 500;
+    return { refer, total, angle, radius };
+  }, [content]);
 
   useEffect(() => {
     // More reliable calculation for front index
@@ -55,6 +58,8 @@ export default function reference() {
       }
     });
   }, [frontIndex]);
+
+  if (!content || total === 0) return;
 
   return (
     <div className="carousel-wrapper">

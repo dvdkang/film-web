@@ -1,16 +1,26 @@
-import { Mail, Send, Bell, Film, Music, Clapperboard } from "lucide-react";
+"use client";
 
-export default function contact() {
+import { useContext } from "react";
+import { Mail, Send, Bell, Film, Music, Clapperboard } from "lucide-react";
+import { ContentContext } from "@/context/ContentContext";
+
+export default function Contact() {
+  const content = useContext(ContentContext);
+
+  if (!content) return;
+  const contact = content.contact;
+
   return (
     <div className="min-h-screen relative overflow-hidden">
       <div className="relative z-10 min-h-screen flex items-center justify-center p-6 sm:p-8">
         <div className="max-w-3xl w-full">
           <div className="text-center mb-8">
             <p className="text-white text-xl max-w-xl mx-auto">
-              Join us on this{" "}
-              <span className="text-yellow-400">cinematic journey</span>! Get
-              exclusive <span className="text-pink-500">behind-the-scenes</span>{" "}
-              content and updates on our musical film thesis project
+              {contact.logline[0]}
+              <span className="text-yellow-400">{contact.logline[1]}</span>
+              {contact.logline[2]}
+              <span className="text-pink-500">{contact.logline[3]}</span>
+              {contact.logline[4]}
             </p>
           </div>
           <div className="bg-gradient-to-br from-gray-900/95 to-black/95 backdrop-blur-lg opacity-90 rounded-3xl shadow-2xl border border-yellow-500/30 overflow-hidden">
@@ -22,10 +32,8 @@ export default function contact() {
                     <Film className="w-6 h-6 text-white" />
                   </div>
                   <div>
-                    <h2 className="text-white">Behind the Curtain</h2>
-                    <p className="text-gray-400">
-                      Subscribe for exclusive updates & BTS photos
-                    </p>
+                    <h2 className="text-white">{contact.inputDetail[0]}</h2>
+                    <p className="text-gray-400">{contact.inputDetail[1]}</p>
                   </div>
                 </div>
               </div>
@@ -49,7 +57,7 @@ export default function contact() {
                   type="submit"
                   className="px-8 py-4 bg-gradient-to-r from-yellow-500 via-pink-500 to-purple-500 text-white rounded-xl hover:from-yellow-600 hover:via-pink-600 hover:to-purple-600 transition-all duration-300 flex items-center justify-center gap-2 group shadow-lg shadow-pink-500/50 hover:shadow-pink-600/70 hover:scale-105 active:scale-95"
                 >
-                  <span>Subscribe Now</span>
+                  <span>{contact.subsribeButton}</span>
                   <Send className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                 </button>
               </form>
@@ -74,23 +82,19 @@ export default function contact() {
                   <Mail className="w-6 h-6 text-white" />
                 </div>
                 <div>
-                  <h2 className="text-white">Direct Contact</h2>
-                  <p className="text-gray-400">
-                    Reach out for collaborations & inquiries
-                  </p>
+                  <h2 className="text-white">{contact.reachOut[0]}</h2>
+                  <p className="text-gray-400">{contact.reachOut[1]}</p>
                 </div>
               </div>
               <a
                 href="mailto:northbynorthridge.musical@gmail.com"
                 className="text-pink-400 hover:text-yellow-400 transition-colors break-all text-lg hover:underline"
               >
-                northbynorthridge.musical@gmail.com
+                {contact.reachOut[2]}
               </a>
             </div>
             <div className="mt-8 text-center border-t border-gray-700 pt-6 pb-6">
-              <p className="text-gray-600 mt-2">
-                Your privacy is protected – we'll never share your information
-              </p>
+              <p className="text-gray-600 mt-2">{contact.privacy}</p>
             </div>
           </div>
         </div>

@@ -3,8 +3,9 @@
 import Timeline from "@/components/Timeline";
 import { useContext } from "react";
 import { ContentContext } from "@/context/ContentContext";
+import Image from "next/image";
 
-export default function support() {
+export default function Support() {
   const content = useContext(ContentContext);
 
   if (!content) return;
@@ -25,7 +26,7 @@ export default function support() {
         </div>
 
         <div className="flex items-center justify-center">
-          <img
+          <Image
             src={support.budgetChart}
             alt="Budget Pie Chart"
             className="w-full max-w-lg h-auto object-contain rounded-lg"

@@ -2,8 +2,9 @@
 
 import { useContext, useState, useEffect } from "react";
 import { ContentContext } from "@/context/ContentContext";
+import Image from "next/image";
 
-export default function TeamRowResponsive() {
+export default function Team() {
   const content = useContext(ContentContext);
   const [activeCard, setActiveCard] = useState(null);
 
@@ -50,7 +51,7 @@ export default function TeamRowResponsive() {
       />
 
       {/* Image fully visible */}
-      <img
+      <Image
         src={member.photo}
         alt={member.name}
         className="relative z-10 w-full h-full object-cover rounded-lg shadow-lg"
