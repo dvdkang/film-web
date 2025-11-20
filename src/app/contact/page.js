@@ -48,6 +48,7 @@ export default function Contact() {
                   <input
                     type="email"
                     name="EMAIL"
+                    autoComplete="email"
                     placeholder="Your email address"
                     className="w-full pl-12 pr-4 py-4 rounded-xl bg-black/50 border-2 border-gray-700 text-white placeholder-gray-500 focus:outline-none focus:border-pink-500 focus:ring-2 focus:ring-pink-500/50 transition-all font-serif"
                   />

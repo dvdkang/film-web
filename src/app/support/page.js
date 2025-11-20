@@ -29,6 +29,9 @@ export default function Support() {
           <Image
             src={support.budgetChart}
             alt="Budget Pie Chart"
+            width={400}
+            height={400}
+            priority={true}
             className="w-full max-w-lg h-auto object-contain rounded-lg"
           />
         </div>

@@ -39,10 +39,10 @@ export default function Timeline() {
 
           {/* Connecting line between notes */}
           <path
-            d={`M 180 ${phases[0].notePosition}% 
-                L ${180 + (100 / 4) * 100} ${phases[1].notePosition}% 
-                L ${180 + (100 / 4) * 200} ${phases[2].notePosition}% 
-                L ${180 + (100 / 4) * 300} ${phases[3].notePosition}%`}
+            d={`M 180 ${phases[0].notePosition} 
+                L ${180 + (100 / 4) * 100} ${phases[1].notePosition} 
+                L ${180 + (100 / 4) * 200} ${phases[2].notePosition} 
+                L ${180 + (100 / 4) * 300} ${phases[3].notePosition}`}
             stroke="#9ca3af"
             strokeWidth="2"
             fill="none"

@@ -55,6 +55,7 @@ export default function Footer() {
             <input
               type="email"
               name="EMAIL"
+              autoComplete="email"
               placeholder="Your email"
               className="px-4 py-2 rounded-lg border border-black/[.2] focus:outline-none focus:ring-2 focus:ring-black/[.5] w-full sm:w-auto"
               required

@@ -51,12 +51,16 @@ export default function Team() {
       />
 
       {/* Image fully visible */}
-      <Image
-        src={member.photo}
-        alt={member.name}
-        className="relative z-10 w-full h-full object-cover rounded-lg shadow-lg"
-      />
-
+      <div className="relative z-10 w-full h-full object-cover rounded-lg shadow-lg">
+        <Image
+          src={member.photo}
+          alt={member.name}
+          fill
+          sizes="(max-width: 768px) 100vw, 33vw"
+          priority={true}
+          className="relative z-10 w-full h-full object-cover rounded-lg shadow-lg"
+        />
+      </div>
       {member.emoji && (
         <span
           className="absolute -top-4 -right-4 text-6xl z-30"
