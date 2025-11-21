@@ -1,11 +1,34 @@
 @import "tailwindcss";
+@import url("https://fonts.googleapis.com/css2?family=Chewy&display=swap");
 
 :root {
   --background: #e1cfb7;
   --foreground: #171717;
   --font-bebas: "Bebas Neue", sans-serif;
   --font-jost: "Jost", sans-serif;
-  --font-lobster: "Lobster Two", cursive;
+  --font-lobster: "Lobster Two", sans-serif;
+  --font-chewy: "Chewy", system-ui;
+  --font-fredoka: "Fredoka", system-ui;
+}
+
+.font-bebas {
+  font-family: var(--font-bebas);
+}
+
+.font-jost {
+  font-family: var(--font-jost);
+}
+
+.font-lobster {
+  font-family: var(--font-lobster);
+}
+
+.font-chewy {
+  font-family: var(--font-chewy);
+}
+
+.font-fredoka {
+  font-family: var(--font-fredoka);
 }
 
 @theme inline {

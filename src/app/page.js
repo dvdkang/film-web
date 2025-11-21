@@ -93,7 +93,7 @@ export default function Home() {
   return (
     <div className="pt-4 md:pt-8 px-4 md:px-16">
       <div>
-        <p className="text-xl md:text-3xl font-jost font-bold text-center text-white px-4 md:px-16 max-w-4xl mx-auto">
+        <p className="text-xl md:text-3xl font-fredoka font-bold text-center text-white px-4 md:px-16 max-w-4xl mx-auto bg-black/40 backdrop-blur-sm rounded-lg py-4">
           {hero.logline}
         </p>
       </div>

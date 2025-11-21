@@ -1,6 +1,6 @@
 "use client";
 
-import { Bebas_Neue, Jost, Lobster_Two } from "next/font/google";
+import { Bebas_Neue, Jost, Lobster_Two, Fredoka } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -25,6 +25,11 @@ const jost = Jost({
 const lobsterFont = Lobster_Two({
   variable: "--font-lobster",
   weight: "700",
+  subsets: ["latin"],
+});
+
+const fredoka = Fredoka({
+  weight: "600",
   subsets: ["latin"],
 });
 
@@ -77,7 +82,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" className="h-full">
       <body
-        className={`antialiased ${bebasNeue.className} ${jost.variable} ${lobsterFont.variable} min-h-screen flex flex-col`}
+        className={`antialiased ${bebasNeue.className} ${jost.variable} ${lobsterFont.variable} ${fredoka.variable} min-h-screen flex flex-col`}
       >
         <ContentProvider>
           <BackgroundWrapper triggerConfetti={triggerConfetti}>
