@@ -75,13 +75,15 @@ export default function RootLayout({ children }) {
   const pathname = usePathname();
 
   return (
-    <html lang="en">
+    <html lang="en" className="h-full">
       <body
-        className={`antialiased ${bebasNeue.className} ${jost.variable} ${lobsterFont.variable}`}
+        className={`antialiased ${bebasNeue.className} ${jost.variable} ${lobsterFont.variable} min-h-screen flex flex-col`}
       >
         <ContentProvider>
           <BackgroundWrapper triggerConfetti={triggerConfetti}>
-            <div className="pt-[5rem] md:pt-[6rem]">{children}</div>
+            <main className="flex-grow">
+              <div className="pt-[5rem] md:pt-[6rem]">{children}</div>
+            </main>
             {confettiActive && (
               <Confetti
                 width={window.innerWidth}

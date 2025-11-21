@@ -12,8 +12,10 @@ export default function Support() {
   const support = content.support;
 
   return (
-    <div className="justify-items-center items-center p-8 pb-20 gap-8 sm:p-20">
-      <h1 className="text-4xl font-bold text-white">{support.title[0]}</h1>
+    <div className="flex flex-col items-center justify-center p-8 pb-20 gap-8 sm:p-20">
+      <h1 className="text-4xl font-bold text-white text-center">
+        {support.title[0]}
+      </h1>
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-6xl mx-auto mt-8">
         <div className="space-y-6">
           <p className="text-sm text-white md:text-xl leading-relaxed font-serif font-semibold">

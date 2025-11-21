@@ -10,8 +10,10 @@ export default function Synopsis() {
   const synopsis = content.synopsis;
 
   return (
-    <div className="font-sans items-center justify-items-center p-8 pb-20 gap-8 sm:p-20">
-      <h1 className="text-4xl font-bold text-white">{synopsis.title}</h1>
+    <div className="font-sans flex flex-col items-center justify-center p-8 pb-20 gap-8 sm:p-20">
+      <h1 className="text-4xl font-bold text-white text-center">
+        {synopsis.title}
+      </h1>
       <div className="w-full max-w-4xl mx-auto bg-black/40 backdrop-blur-md p-4 sm:p-6 rounded-xl shadow-lg">
         <p className="text-sm sm:text-base md:text-xl leading-relaxed font-serif text-white">
           {synopsis.description.map((paragraph, index) => (

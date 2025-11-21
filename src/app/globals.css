@@ -22,8 +22,14 @@
   }
 }
 
+html {
+  overflow-x: hidden;
+}
+
 body {
   background: var(--background);
+  overflow-x: hidden;
+  position: relative;
   /* color: var(--foreground); */
   /* font-family: Arial, Helvetica, sans-serif; */
 }
