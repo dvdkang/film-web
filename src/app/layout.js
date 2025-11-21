@@ -9,6 +9,7 @@ import { ContentContext } from "@/context/ContentContext";
 import Confetti from "react-confetti";
 import { ContentProvider } from "../context/ContentContext";
 import { usePathname } from "next/navigation";
+import { Analytics } from "@vercel/analytics/react";
 
 const bebasNeue = Bebas_Neue({
   variable: "--font-bebas",
@@ -114,6 +115,7 @@ export default function RootLayout({ children }) {
             gravity={0.3}
           />
         )} */}
+        <Analytics />
       </body>
     </html>
   );
