@@ -25,14 +25,14 @@ export default function Navbar({ triggerConfetti }) {
         scrolled ? "bg-black/60" : "bg-transparent"
       }`}
     >
-      <div className="max-w-5xl mx-auto flex items-center justify-between">
+      <div className="hidden md:grid grid-cols-3 items-center w-full px-6">
         {/* LEFT: Navigation Links */}
-        <div className="hidden md:flex absolute left-4 xl:left-8 space-x-2 md:space-x-3 lg:space-x-6 xl:space-x-8 2xl:space-x-12">
+        <div className="flex items-center gap-6 justify-start">
           {navbar.nav.map((nav) => (
             <Link
               href={nav.link}
               key={nav.name}
-              className="font-bold text-sm md:text-base lg:text-lg xl:text-2xl text-white hover:text-[#DFA92A]"
+              className="font-bold text-sm md:text-base lg:text-lg xl:text-2xl text-white hover:text-[#DFA92A] whitespace-nowrap flex-shrink-0"
             >
               {nav.name}
             </Link>
@@ -40,31 +40,46 @@ export default function Navbar({ triggerConfetti }) {
         </div>
 
         {/* CENTER: Title */}
-        <div className="flex-1 text-center">
+        <div className="text-center">
           <Link
             href="/"
-            className="text-3xl md:text-4xl lg:text-5xl font-bold text-white hover:text-[#DFA92A] tracking-wide"
+            className="text-3xl lg:text-4xl xl:text-5xl font-bold text-white hover:text-[#DFA92A] tracking-wide truncate"
           >
             {navbar.title}
           </Link>
         </div>
-        <div className="hidden md:block absolute right-4">
+
+        {/* RIGHT: Donate Button */}
+        <div className="flex items-center justify-end">
           <Link
             href={navbar.donateLink}
             target="_blank"
             rel="noopener noreferrer"
-            className="ml-4 px-7 py-5 bg-[#F55151] hover:bg-[#AD4851] text-white text-xl font-semibold rounded transition"
+            className="px-5 py-3 md:px-6 md:py-4 lg:px-7 lg:py-5 bg-[#F55151] hover:bg-[#AD4851] text-white text-lg md:text-xl lg:text-2xl font-semibold rounded transition whitespace-nowrap"
             onMouseEnter={triggerConfetti}
           >
             {navbar.button}
           </Link>
         </div>
+      </div>
+
+      {/* MOBILE: Flex layout */}
+      <div className="md:hidden flex items-center w-full px-4">
         <button
-          className="md:hidden text-white text-3xl absolute left-4"
+          className="text-white text-3xl justify-start flex items-center"
           onClick={() => setMenuOpen(!menuOpen)}
         >
           ☰
         </button>
+
+        <div className="flex-1 text-center mx-2 flex items-center justify-center">
+          <Link
+            href="/"
+            className="text-3xl font-bold text-white tracking-wide truncate inline-block max-w-full"
+          >
+            {navbar.title}
+          </Link>
+        </div>
       </div>
 
       {/* Full-screen Mobile Menu */}
